@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jett and Josh's 3D Prints | King's College Exclusive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+    body {
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .card-hover {
+        transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing-card {
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .pricing-card.active {
+        background-color: #2563eb !important;
+        border-color: #3b82f6 !important;
+        transform: scale(1.03);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .pricing-card.active ul li {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .pricing-card.active ul li i {
+        color: white !important;
+    }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+<!-- Navigation -->
+<nav class="fixed w-full z-50 glass border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            <div class="flex items-center gap-2">
+                <div class="bg-blue-600 p-2 rounded-lg text-white shadow-md shadow-blue-200">
+                    <i class="fas fa-cube text-xl"></i>
+                </div>
+                <span class="font-bold text-xl tracking-tight uppercase">Jett & Josh's <span class="text-blue-600">Prints</span></span>
+            </div>
+            <div class="hidden md:flex space-x-6 font-medium items-center">
+                <a href="#home" class="hover:text-blue-600 transition">Home</a>
+                <a href="#pricing" class="hover:text-blue-600 transition">Pricing</a>
+                <a href="#contact" class="hover:text-blue-600 transition">Order Now</a>
+                <button type="button" onclick="openTrackModal()" class="text-xs bg-blue-100 text-blue-700 px-3 py-1.5 rounded-lg hover:bg-blue-200 transition font-bold cursor-pointer">
+                    <i class="fas fa-search mr-1"></i> Track Order
+                </button>
+                <button type="button" onclick="promptOwnerPin()" class="text-xs bg-slate-800 text-white px-3 py-1.5 rounded-lg hover:bg-slate-700 transition cursor-pointer">
+                    <i class="fas fa-lock mr-1"></i> Owner Panel
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="pt-32 pb-16 px-4">
+    <div class="max-w-7xl mx-auto text-center">
+        <div class="space-y-6 max-w-4xl mx-auto">
+            <div class="inline-block bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-sm font-semibold uppercase tracking-wider shadow-sm">
+                ✨ Exclusive to King's College Students & Teachers
+            </div>
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-extrabold leading-tight">
+                Premium <span class="gradient-text">3D Printing</span> from Jett & Josh.
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-600 mx-auto max-w-2xl">
+                High-quality custom prints, school projects, and rapid prototypes. Meet at the back right of the tennis courts the day after you send an order. Right at the start of break time.  
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 pt-4">
+                <a href="#pricing" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200 text-base sm:text-lg flex items-center gap-2">
+                    <i class="fas fa-tag"></i> View Pricing
+                </a>
+                <a href="#contact" class="border-2 border-slate-200 bg-white px-8 py-4 rounded-xl font-bold hover:bg-slate-100 transition text-base sm:text-lg">
+                    Contact Us
+                </a>
+                <button type="button" onclick="openTrackModal()" class="bg-blue-50 text-blue-700 border border-blue-200 px-8 py-4 rounded-xl font-bold hover:bg-blue-100 transition text-base sm:text-lg cursor-pointer">
+                    <i class="fas fa-search mr-2"></i> Track Your Order
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Perks -->
+<section class="py-12 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex items-start gap-4 p-6 rounded-2xl bg-white shadow-sm border border-slate-100 card-hover">
+            <div class="text-blue-600 text-2xl mt-1"><i class="fas fa-shipping-fast"></i></div>
+            <div>
+                <h3 class="font-bold text-lg">Fast School Delivery</h3>
+                <p class="text-slate-500 text-sm">Pick up your prints at break times in the tennis courts or after school at the octagon.</p>
+            </div>
+        </div>
+        <div class="flex items-start gap-4 p-6 rounded-2xl bg-white shadow-sm border border-slate-100 card-hover">
+            <div class="text-blue-600 text-2xl mt-1"><i class="fas fa-piggy-bank"></i></div>
+            <div>
+                <h3 class="font-bold text-lg">Student Pricing</h3>
+                <p class="text-slate-500 text-sm">Competitive rates tailored for student budgets and classroom projects.</p>
+            </div>
+        </div>
+        <div class="flex items-start gap-4 p-6 rounded-2xl bg-white shadow-sm border border-slate-100 card-hover">
+            <div class="text-blue-600 text-2xl mt-1"><i class="fas fa-shield-alt"></i></div>
+            <div>
+                <h3 class="font-bold text-lg">Verified Quality</h3>
+                <p class="text-slate-500 text-sm">Tested durability and precision for every print calibrated by Josh and Jett.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="py-20 bg-slate-900 text-white px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-blue-400 font-bold text-sm tracking-widest uppercase">Rates</span>
+            <h2 class="text-3xl font-bold mt-1">Simple Pricing</h2>
+            <p class="text-slate-400 mt-2">Click a plan to select it instantly for your order.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="pricing-card p-8 rounded-3xl border border-slate-700 bg-slate-800/50" onclick="selectPricing(this, 'Small Print', '฿30')">
+                <h3 class="text-xl font-bold mb-2">Small Prints</h3>
+                <div class="text-3xl font-bold mb-4 text-white">฿30</div>
+                <ul class="space-y-3 text-slate-400 mb-8">
+                    <li><i class="fas fa-check text-blue-400 mr-2"></i> Keychains & Tags</li>
+                    <li><i class="fas fa-check text-blue-400 mr-2"></i> Small figures</li>
+                </ul>
+            </div>
+            <div class="pricing-card active p-8 rounded-3xl border border-blue-500 bg-blue-600 shadow-xl" onclick="selectPricing(this, 'Standard Print', '฿60')">
+                <h3 class="text-xl font-bold mb-2">Standard Prints</h3>
+                <div class="text-3xl font-bold mb-4 text-white">฿60</div>
+                <ul class="space-y-3 text-white/90 mb-8">
+                    <li><i class="fas fa-check text-white mr-2"></i> Phone Stands</li>
+                    <li><i class="fas fa-check text-white mr-2"></i> Larger desk toys</li>
+                </ul>
+            </div>
+            <div class="pricing-card p-8 rounded-3xl border border-slate-700 bg-slate-800/50" onclick="selectPricing(this, 'Large/Custom Print', '฿120')">
+                <h3 class="text-xl font-bold mb-2">Large/Custom</h3>
+                <div class="text-3xl font-bold mb-4 text-white">฿120</div>
+                <ul class="space-y-3 text-slate-400 mb-8">
+                    <li><i class="fas fa-check text-blue-400 mr-2"></i> Multi-part models</li>
+                    <li><i class="fas fa-check text-blue-400 mr-2"></i> Overnight printing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 px-4 bg-slate-50">
+    <div class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100">
+        <div class="text-center mb-10">
+            <span class="text-blue-600 font-bold text-sm tracking-widest uppercase">Get in touch</span>
+            <h2 class="text-3xl font-bold mt-1">Ready to print?</h2>
+            <p class="text-slate-500 mt-2">Submit your details and Jett & Josh will receive your order instantly.</p>
+        </div>
+        
+        <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-6">
+            <!-- Selected Plan Indicator Badge -->
+            <div class="bg-blue-50 border border-blue-200 text-blue-800 p-4 rounded-xl flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider block text-blue-600">Selected Plan</span>
+                    <span id="selectedPlanDisplay" class="font-bold text-lg">Standard Print - ฿60</span>
+                </div>
+                <div class="bg-blue-600 text-white p-2 rounded-lg text-sm">
+                    <i class="fas fa-check-circle"></i> Active
+                </div>
+            </div>
+
+            <div id="formStatus" class="p-4 rounded-xl text-center font-bold mb-4 hidden"></div>
+
+            <input type="hidden" name="selected_pricing" id="hiddenPricing" value="Standard Print - ฿60">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Full Name</label>
+                    <input type="text" id="orderName" placeholder="Your name" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Class and Year Group</label>
+                    <input type="text" id="orderClass" placeholder="e.g. Year 10 / 5B" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition outline-none" required>
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-semibold mb-2">Print Description & Details</label>
+                <textarea id="printDesc" rows="4" placeholder="Describe your item (e.g. 'A small red phone stand that is very strong')..." class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition outline-none" required></textarea>
+            </div>
+            
+            <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200 text-lg cursor-pointer">
+                Send Order Request 🚀
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- Track Order Modal -->
+<div id="trackModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-8 relative">
+        <div class="flex justify-between items-center mb-6">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-100 text-blue-600 p-3 rounded-2xl"><i class="fas fa-search text-xl"></i></div>
+                <div>
+                    <h3 class="font-bold text-xl text-slate-800">Track Your Order</h3>
+                    <p class="text-xs text-slate-500">Enter your order number (e.g. #JJ-1042)</p>
+                </div>
+            </div>
+            <button type="button" onclick="closeTrackModal()" class="text-slate-400 hover:text-slate-700 text-xl p-2 cursor-pointer"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="flex gap-2 mb-6">
+            <input type="text" id="trackInput" placeholder="#JJ-XXXX" class="flex-1 px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition outline-none font-bold uppercase">
+            <button type="button" onclick="searchOrder()" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md shadow-blue-200 cursor-pointer">Search</button>
+        </div>
+
+        <div id="trackResult" class="hidden space-y-4 p-5 rounded-2xl bg-slate-50 border border-slate-200">
+            <!-- Filled dynamically -->
+        </div>
+        <div id="trackError" class="hidden p-4 rounded-xl bg-red-100 text-red-700 text-center font-bold text-sm">
+            Order not found.
+        </div>
+    </div>
+</div>
+
+<!-- Success Order Popup with Order Number & Copy Button -->
+<div id="successModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-8 text-center space-y-4">
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+            <i class="fas fa-check"></i>
+        </div>
+        <h3 class="font-bold text-2xl text-slate-800">Order Successfully Sent!</h3>
+        <p class="text-sm text-slate-600">Your order has been sent to Jett and Josh.</p>
+        
+        <div class="bg-blue-50 border border-blue-200 p-4 rounded-2xl flex items-center justify-between">
+            <div class="text-left">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">Your Order Number</span>
+                <span id="popupOrderNo" class="text-2xl font-extrabold text-blue-900 tracking-wider">#JJ-0000</span>
+            </div>
+            <button type="button" onclick="copyOrderNumber()" class="bg-blue-600 text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-blue-700 transition flex items-center gap-2 cursor-pointer shadow-md">
+                <i class="fas fa-copy" id="copyIcon"></i> <span id="copyText">Copy</span>
+            </button>
+        </div>
+
+        <p class="text-xs text-slate-500">
+            Meet at the back right of the tennis courts the day after you send an order. Right at the start of break time.
+        </p>
+
+        <button type="button" onclick="closeSuccessModal()" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md shadow-blue-200 cursor-pointer">
+            Got it, thanks!
+        </button>
+    </div>
+</div>
+
+<!-- PIN Prompt Modal -->
+<div id="pinModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-8 text-center relative">
+        <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+            <i class="fas fa-lock"></i>
+        </div>
+        <h3 class="font-bold text-xl text-slate-800 mb-1">Owner Access PIN</h3>
+        <p class="text-xs text-slate-500 mb-6">Enter the security PIN to access the owner panel.</p>
+        
+        <input type="password" id="pinInput" maxlength="5" placeholder="•••••" class="w-full text-center text-2xl tracking-widest px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition outline-none mb-4">
+        
+        <div id="pinError" class="text-red-600 text-xs font-semibold mb-4 hidden">Incorrect PIN. Please try again.</div>
+
+        <div class="flex gap-3">
+            <button type="button" onclick="closePinModal()" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-bold hover:bg-slate-200 transition cursor-pointer">Cancel</button>
+            <button type="button" onclick="verifyPin()" class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md shadow-blue-200 cursor-pointer">Unlock</button>
+        </div>
+    </div>
+</div>
+
+<!-- Owner Panel Modal -->
+<div id="ownerModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-5xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        <div class="bg-slate-900 text-white p-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 p-2 rounded-lg"><i class="fas fa-shield-alt"></i></div>
+                <div>
+                    <h3 class="font-bold text-xl">Jett & Josh Owner Panel</h3>
+                    <p class="text-xs text-slate-400">Live order management & Google Sheets sync (Completed orders auto-delete in 72h)</p>
+                </div>
+            </div>
+            <button type="button" onclick="closeOwnerPanel()" class="text-slate-400 hover:text-white text-xl p-2 cursor-pointer"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="p-6 overflow-y-auto flex-1 bg-slate-50">
+            <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
+                <div>
+                    <h4 class="font-bold text-lg text-slate-800">Incoming Orders</h4>
+                    <p class="text-sm text-slate-500">Linked to Google Sheets: <a href="https://docs.google.com/spreadsheets/d/10Ka5gfvb3heWd7ll4ewGmjZWQ1CeY9SVvMpPPHuLbew/edit?usp=drivesdk" target="_blank" class="text-blue-600 underline font-medium">View Spreadsheet</a></p>
+                </div>
+                <div class="flex gap-2">
+                    <button type="button" onclick="exportToCSV()" class="bg-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-700 transition flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-file-excel"></i> Export CSV
+                    </button>
+                    <button type="button" onclick="clearOrders()" class="bg-red-100 text-red-600 px-4 py-2 rounded-xl text-sm font-bold hover:bg-red-200 transition cursor-pointer">
+                        Clear Orders
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
+                                <th class="p-4">Order #</th>
+                                <th class="p-4">Timestamp</th>
+                                <th class="p-4">Name</th>
+                                <th class="p-4">Class</th>
+                                <th class="p-4">Plan & Price</th>
+                                <th class="p-4">Description</th>
+                                <th class="p-4 text-center">Status Control</th>
+                                <th class="p-4 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody" class="divide-y divide-slate-100 text-sm">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="noOrdersMessage" class="p-12 text-center text-slate-400 hidden">
+                    <i class="fas fa-inbox text-4xl mb-3"></i>
+                    <p class="font-medium">No orders received yet.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white p-4 border-t border-slate-200 text-right">
+            <button type="button" onclick="closeOwnerPanel()" class="bg-slate-800 text-white px-6 py-2 rounded-xl font-bold hover:bg-slate-700 transition cursor-pointer">Close Panel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="py-12 bg-white border-t border-slate-200 text-center">
+    <div class="max-w-7xl mx-auto px-4">
+        <p class="font-bold text-slate-800 mb-1">JETT & JOSH'S 3D PRINTS</p>
+        <p class="text-slate-500 text-sm">Official 3D printing service for King's College students and teachers.</p>
+        <p class="text-slate-400 text-xs mt-6">&copy; 2026 Jett & Josh. Educational use only.</p>
+    </div>
+</footer>
+
+<!-- Firebase SDKs with persistent Cloud Sync & 72-Hour Completed Order Expiration -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'jj-prints-king-college';
+
+    let currentUser = null;
+    let cachedOrders = [];
+    let unsubscribeOrders = null;
+    const SEVENTY_TWO_HOURS_MS = 72 * 60 * 60 * 1000;
+
+    async function initAuth() {
+        try {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+        } catch (err) {
+            console.error("Auth error:", err);
+        }
+    }
+    initAuth();
+
+    onAuthStateChanged(auth, (user) => {
+        currentUser = user;
+        if (user) {
+            listenToOrders();
+        }
+    });
+
+    function listenToOrders() {
+        if (!currentUser) return;
+        if (unsubscribeOrders) unsubscribeOrders();
+
+        const q = collection(db, 'artifacts', appId, 'public', 'data', 'orders');
+        unsubscribeOrders = onSnapshot(q, async (snapshot) => {
+            const now = Date.now();
+            cachedOrders = [];
+            
+            for (const docSnap of snapshot.docs) {
+                const data = docSnap.data();
+                const createdAt = data.createdAt || now;
+                const status = data.status || '';
+
+                if (status.includes("Completed") && (now - createdAt > SEVENTY_TWO_HOURS_MS)) {
+                    try {
+                        await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'orders', docSnap.id));
+                    } catch (e) {
+                        console.error("Error auto-deleting completed order:", e);
+                    }
+                } else {
+                    cachedOrders.push({ id: docSnap.id, ...data });
+                }
+            }
+
+            cachedOrders.sort((a, b) => b.createdAt - a.createdAt);
+            renderOrdersTable();
+        }, (error) => {
+            console.error("Firestore snapshot error:", error);
+        });
+    }
+
+    window.selectPricing = function(element, planName, price) {
+        const fullPlanText = `${planName} - ${price}`;
+        document.getElementById('hiddenPricing').value = fullPlanText;
+        document.getElementById('selectedPlanDisplay').innerText = fullPlanText;
+
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.classList.remove('active', 'border-blue-500', 'bg-blue-600', 'shadow-xl');
+            card.classList.add('border-slate-700', 'bg-slate-800/50');
+        });
+        element.classList.add('active', 'border-blue-500', 'bg-blue-600', 'shadow-xl');
+        element.classList.remove('border-slate-700', 'bg-slate-800/50');
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.handleOrderSubmit = async function(event) {
+        event.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        const status = document.getElementById('formStatus');
+        
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Sending to Jett & Josh... 🚀";
+
+        const orderNum = "#JJ-" + Math.floor(1000 + Math.random() * 9000);
+
+        const orderData = {
+            orderNumber: orderNum,
+            name: document.getElementById('orderName').value,
+            classGroup: document.getElementById('orderClass').value,
+            plan: document.getElementById('hiddenPricing').value,
+            description: document.getElementById('printDesc').value,
+            timestamp: new Date().toLocaleString(),
+            createdAt: Date.now(),
+            status: 'Received (Pending)'
+        };
+
+        try {
+            if (currentUser) {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), orderData);
+            }
+
+            status.style.display = "block";
+            status.className = "p-4 rounded-xl text-center font-bold mb-4 bg-green-100 text-green-700";
+            status.innerHTML = `Successfully sent to Jett and Josh! Order Number: <b>${orderNum}</b>`;
+            
+            document.getElementById('popupOrderNo').innerText = orderNum;
+            document.getElementById('successModal').classList.remove('hidden');
+
+            document.getElementById('orderForm').reset();
+            document.getElementById('hiddenPricing').value = "Standard Print - ฿60";
+            document.getElementById('selectedPlanDisplay').innerText = "Standard Print - ฿60";
+        } catch (error) {
+            status.style.display = "block";
+            status.className = "p-4 rounded-xl text-center font-bold mb-4 bg-red-100 text-red-700";
+            status.innerHTML = "Error saving order. Please try again.";
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Send Order Request 🚀";
+        }
+    }
+
+    window.copyOrderNumber = function() {
+        const orderNum = document.getElementById('popupOrderNo').innerText;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(orderNum);
+        } else {
+            const el = document.createElement('textarea');
+            el.value = orderNum;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+        }
+
+        const copyText = document.getElementById('copyText');
+        const copyIcon = document.getElementById('copyIcon');
+        copyText.innerText = "Copied!";
+        copyIcon.className = "fas fa-check";
+        setTimeout(() => {
+            copyText.innerText = "Copy";
+            copyIcon.className = "fas fa-copy";
+        }, 2000);
+    }
+
+    window.closeSuccessModal = function() {
+        document.getElementById('successModal').classList.add('hidden');
+    }
+
+    window.openTrackModal = function() {
+        document.getElementById('trackInput').value = '';
+        document.getElementById('trackResult').classList.add('hidden');
+        document.getElementById('trackError').classList.add('hidden');
+        document.getElementById('trackModal').classList.remove('hidden');
+    }
+
+    window.closeTrackModal = function() {
+        document.getElementById('trackModal').classList.add('hidden');
+    }
+
+    window.searchOrder = function() {
+        const queryVal = document.getElementById('trackInput').value.trim().toUpperCase();
+        const resultBox = document.getElementById('trackResult');
+        const errorBox = document.getElementById('trackError');
+
+        if (!queryVal) return;
+
+        const found = cachedOrders.find(o => o.orderNumber && o.orderNumber.toUpperCase() === queryVal);
+
+        if (found) {
+            errorBox.classList.add('hidden');
+            resultBox.classList.remove('hidden');
+            
+            let badgeColor = "bg-amber-100 text-amber-700";
+            if (found.status && found.status.includes("Printing")) badgeColor = "bg-blue-100 text-blue-700";
+            if (found.status && (found.status.includes("Ready") || found.status.includes("Completed"))) badgeColor = "bg-emerald-100 text-emerald-700";
+
+            resultBox.innerHTML = `
+                <div class="flex justify-between items-center border-b border-slate-200 pb-3">
+                    <span class="font-extrabold text-blue-600 text-lg">${found.orderNumber}</span>
+                    <span class="${badgeColor} px-3 py-1 rounded-full text-xs font-bold">${found.status || 'Received'}</span>
+                </div>
+                <div class="space-y-1 text-sm text-slate-700 pt-2">
+                    <p><strong>Name:</strong> ${escapeHtml(found.name)}</p>
+                    <p><strong>Class:</strong> ${escapeHtml(found.classGroup)}</p>
+                    <p><strong>Plan:</strong> ${escapeHtml(found.plan)}</p>
+                    <p><strong>Description:</strong> ${escapeHtml(found.description)}</p>
+                    <p><strong>Submitted:</strong> ${found.timestamp || 'Recently'}</p>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-xl text-xs text-blue-800 font-medium">
+                    📍 Pickup Location: Back right of the tennis courts at break time (the day after ordering).
+                </div>
+            `;
+        } else {
+            resultBox.classList.add('hidden');
+            errorBox.classList.remove('hidden');
+        }
+    }
+
+    function renderOrdersTable() {
+        const tableBody = document.getElementById('ordersTableBody');
+        const noOrders = document.getElementById('noOrdersMessage');
+        if (!tableBody) return;
+        tableBody.innerHTML = '';
+
+        if (cachedOrders.length === 0) {
+            noOrders.classList.remove('hidden');
+            return;
+        }
+        noOrders.classList.add('hidden');
+
+        cachedOrders.forEach(order => {
+            const tr = document.createElement('tr');
+            tr.className = "hover:bg-slate-50 transition border-b border-slate-100";
+            tr.innerHTML = `
+                <td class="p-4 font-bold text-blue-600">${escapeHtml(order.orderNumber || '#JJ-???')}</td>
+                <td class="p-4 text-xs text-slate-500 whitespace-nowrap">${order.timestamp || 'Just now'}</td>
+                <td class="p-4 font-bold text-slate-800">${escapeHtml(order.name)}</td>
+                <td class="p-4 text-slate-600">${escapeHtml(order.classGroup)}</td>
+                <td class="p-4"><span class="bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full text-xs font-bold">${escapeHtml(order.plan)}</span></td>
+                <td class="p-4 text-slate-600 max-w-xs truncate">${escapeHtml(order.description)}</td>
+                <td class="p-4 text-center">
+                    <select onchange="window.updateOrderStatus('${order.id}', this.value)" class="text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 bg-white shadow-sm focus:ring-2 focus:ring-blue-100 outline-none">
+                        <option value="Received (Pending)" ${order.status === 'Received (Pending)' ? 'selected' : ''}>⏳ Received (Pending)</option>
+                        <option value="Printing 🖨️" ${order.status === 'Printing 🖨️' ? 'selected' : ''}>🖨️ Printing</option>
+                        <option value="Ready at Tennis Courts 🎾" ${order.status === 'Ready at Tennis Courts 🎾' ? 'selected' : ''}>🎾 Ready at Tennis Courts</option>
+                        <option value="Completed ✅" ${order.status === 'Completed ✅' ? 'selected' : ''}>✅ Completed</option>
+                    </select>
+                </td>
+                <td class="p-4 text-center">
+                    <button type="button" onclick="window.deleteSingleOrder('${order.id}')" class="text-red-500 hover:text-red-700 p-2 cursor-pointer"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    }
+
+    window.updateOrderStatus = async function(docId, newStatus) {
+        try {
+            await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'orders', docId), {
+                status: newStatus
+            });
+        } catch (err) {
+            console.error("Error updating status:", err);
+        }
+    }
+
+    window.deleteSingleOrder = async function(docId) {
+        if (!confirm("Are you sure you want to delete this order?")) return;
+        try {
+            await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'orders', docId));
+        } catch (err) {
+            console.error("Error deleting order:", err);
+        }
+    }
+
+    window.promptOwnerPin = function() {
+        document.getElementById('pinInput').value = '';
+        document.getElementById('pinError').classList.add('hidden');
+        document.getElementById('pinModal').classList.remove('hidden');
+    }
+
+    window.closePinModal = function() {
+        document.getElementById('pinModal').classList.add('hidden');
+    }
+
+    window.verifyPin = function() {
+        const enteredPin = document.getElementById('pinInput').value;
+        if (enteredPin === "85455") {
+            closePinModal();
+            document.getElementById('ownerModal').classList.remove('hidden');
+            renderOrdersTable();
+        } else {
+            document.getElementById('pinError').classList.remove('hidden');
+        }
+    }
+
+    window.closeOwnerPanel = function() {
+        document.getElementById('ownerModal').classList.add('hidden');
+    }
+
+    window.exportToCSV = function() {
+        const rows = [["Order Number", "Timestamp", "Name", "Class", "Plan & Price", "Description", "Status"]];
+        cachedOrders.forEach(o => {
+            rows.push([o.orderNumber || '', o.timestamp || '', o.name || '', o.classGroup || '', o.plan || '', (o.description || '').replace(/,/g, ' '), o.status || '']);
+        });
+
+        let csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "jett_josh_3d_prints_orders.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    window.clearOrders = async function() {
+        if (!confirm("Are you sure you want to clear all orders?")) return;
+        try {
+            const querySnapshot = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'orders'));
+            for (const docSnap of querySnapshot.docs) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'orders', docSnap.id));
+            }
+        } catch (err) {
+            console.error("Error clearing orders:", err);
+        }
+    }
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+</script>
+</body>
+</html>
